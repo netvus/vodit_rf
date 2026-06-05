@@ -1,0 +1,43 @@
+erDiagram
+    USERS ||--o{ APPLICATIONS : creates
+    USERS ||--o{ REVIEWS : writes
+    APPLICATIONS ||--o{ REVIEWS : has
+
+    USERS {
+        int id PK
+        varchar login
+        varchar password
+        varchar fio
+        date birth_date
+        varchar phone
+        varchar email
+        enum role
+    }
+
+    APPLICATIONS {
+        int id PK
+        int user_id FK
+        varchar transport_type
+        date start_date
+        varchar payment_method
+        enum status
+        timestamp created_at
+    }
+
+    REVIEWS {
+        int id PK
+        int user_id FK
+        int application_id FK
+        text review_text
+        timestamp created_at
+    }
+
+%% transport_type values:
+%% Катер
+%% Яхта
+%% Круизный лайнер
+
+%% status values:
+%% Новая
+%% Идет обучение
+%% Обучение завершено
